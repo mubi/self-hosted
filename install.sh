@@ -1,38 +1,29 @@
 #!/usr/bin/env bash
-set -eE
-
-# Pre-pre-flight? 🤷
+set -e
 if [[ -n "$MSYSTEM" ]]; then
-  echo "Seems like you are using an MSYS2-based system (such as Git Bash) which is not supported. Please use WSL instead."
+  echo "Seems like you are using an MSYS2-based system (such as Git Bash) which is not supported. Please use WSL instead.";
   exit 1
 fi
 
-source install/_lib.sh
+source "$(dirname $0)/install/_lib.sh"  # does a `cd .../install/`, among other things
 
-# Pre-flight. No impact yet.
-source install/parse-cli.sh
-source install/detect-platform.sh
-source install/dc-detect-version.sh
-source install/error-handling.sh
-# We set the trap at the top level so that we get better tracebacks.
-trap_with_arg cleanup ERR INT TERM EXIT
-source install/check-latest-commit.sh
-source install/check-minimum-requirements.sh
-
-# Let's go! Start impacting things.
-source install/turn-things-off.sh
-source install/update-docker-volume-permissions.sh
-source install/create-docker-volumes.sh
-source install/ensure-files-from-examples.sh
-source install/check-memcached-backend.sh
-source install/ensure-relay-credentials.sh
-source install/generate-secret-key.sh
-source install/update-docker-images.sh
-source install/build-docker-images.sh
-source install/install-wal2json.sh
-source install/bootstrap-snuba.sh
-source install/create-kafka-topics.sh
-source install/upgrade-postgres.sh
-source install/set-up-and-migrate-database.sh
-source install/geoip.sh
-source install/wrap-up.sh
+source parse-cli.sh
+source error-handling.sh
+source check-minimum-requirements.sh
+source create-docker-volumes.sh
+source ensure-files-from-examples.sh
+source generate-secret-key.sh
+source replace-tsdb.sh
+source update-docker-images.sh
+source build-docker-images.sh
+source turn-things-off.sh
+source set-up-zookeeper.sh
+source install-wal2json.sh
+source bootstrap-snuba.sh
+source create-kafka-topics.sh
+source upgrade-postgres.sh
+source set-up-and-migrate-database.sh
+source migrate-file-storage.sh
+source relay-credentials.sh
+source geoip.sh
+source wrap-up.sh

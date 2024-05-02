@@ -1,6 +1,3 @@
-# Error reporting choice cache
-.reporterrors
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -37,9 +34,6 @@ var/
 pip-log.txt
 pip-delete-this-directory.txt
 sentry_install_log*.txt
-sentry_reset_log*.txt
-sentry_restore_log*.txt
-sentry_backup_log*.txt
 
 # Unit test / coverage reports
 htmlcov/
@@ -75,21 +69,14 @@ target/
 # https://docs.docker.com/compose/extends/
 docker-compose.override.yml
 
-# https://docs.docker.com/compose/environment-variables/#using-the---env-file--option
-.env.custom
-
 *.tar
 data/
-
-# Editor / IDE
 .vscode/tags
-.idea
 
 # custom Sentry config
 sentry/sentry.conf.py
 sentry/config.yml
 sentry/*.bak
-sentry/enhance-image.sh
 sentry/requirements.txt
 relay/credentials.json
 relay/config.yml
@@ -104,6 +91,3 @@ postgres/wal2json
 # integration testing
 _integration-test/custom-ca-roots/nginx/*
 sentry/test-custom-ca-roots.py
-
-# OSX minutia
-.DS_Store
